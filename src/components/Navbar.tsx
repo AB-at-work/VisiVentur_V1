@@ -3,38 +3,42 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
-        <div className="flex items-center gap-8">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-8 py-4">
+        <div>
           <Link
             href="/"
-            className="text-lg font-semibold tracking-tight text-slate-900"
+            className="text-xl font-bold tracking-tight text-slate-900"
           >
             VisiVentur
           </Link>
+        </div>
+        <div className="flex items-center gap-8">
           <Link
             href="/pricing"
             className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
             Pricing
           </Link>
-          <button
-            type="button"
-            className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-slate-300 hover:text-slate-900"
-          >
-            ₹ / $ / € / £
-          </button>
           <Link
             href="/help"
-            aria-label="Help"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-base font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
-            ?
+            Help
           </Link>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            className="flex items-center gap-1 rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition-colors hover:border-slate-300 hover:text-slate-900"
+          >
+            Currency
+            <span aria-hidden="true" className="text-xs leading-none text-slate-400">
+              v
+            </span>
+          </button>
           <Link
             href="/signin"
-            className="rounded-md border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-900"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
           >
             Sign In
           </Link>
