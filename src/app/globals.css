@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+[data-theme="light"] {
+  --background: #F5E6D3;
+  --foreground: #111827;
+  --accent: #2563EB;
+}
+
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #FAFAFA;
+  --accent: #1E3A8A;
+}
+
+[data-theme="premium"] {
+  --background: #1a1a1a;
+  --foreground: #FAFAFA;
+  --accent: #FFD700;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,5 +37,29 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Focus visible styles for better accessibility */
+.focus-visible:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
