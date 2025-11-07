@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/lib/auth/options";
@@ -33,7 +32,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unsupported currency" }, { status: 400 });
   }
 
-  cookies().set({
+  const response = new NextResponse(null, { status: 204 });
+
+  response.cookies.set({
     name: "visiventur_preferred_currency",
     value: currency as CurrencyCode,
     httpOnly: true,
@@ -42,5 +43,5 @@ export async function POST(request: Request) {
     maxAge: 60 * 60 * 24 * 365,
   });
 
-  return new NextResponse(null, { status: 204 });
+  return response;
 }

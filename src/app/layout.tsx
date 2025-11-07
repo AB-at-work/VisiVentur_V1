@@ -31,7 +31,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const storedCurrency = cookieStore.get("visiventur_preferred_currency")?.value;
   const initialCurrency =
     storedCurrency && ["INR", "USD", "EUR", "GBP"].includes(storedCurrency)
