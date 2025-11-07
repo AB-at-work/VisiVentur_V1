@@ -11,10 +11,18 @@ const config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "light-brown": "#F5E6D3",
+        "royal-blue": "#2563EB",
+        "deep-navy": "#1E3A8A",
+        "kalahari-gold": "#FFD700",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"],
+        sans: ["Inter", "var(--font-geist-sans)", "system-ui", "sans-serif"],
+        serif: ["Playfair Display", "Georgia", "serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
+      },
+      backdropBlur: {
+        sm: "4px",
       },
     },
   },
