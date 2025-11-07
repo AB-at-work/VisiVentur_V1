@@ -11,10 +11,17 @@ const config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "light-brown": "var(--light-brown)",
+        "royal-blue": "var(--royal-blue)",
+        "deep-navy": "var(--deep-navy)",
+        "kalahari-gold": "var(--kalahari-gold)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"],
+        sans: ["var(--font-inter)"],
+        serif: ["var(--font-playfair)"],
+      },
+      boxShadow: {
+        subtle: "0 10px 30px -15px rgba(15, 23, 42, 0.4)",
       },
     },
   },

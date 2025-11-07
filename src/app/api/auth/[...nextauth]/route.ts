@@ -1,20 +1,7 @@
-import NextAuth from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import Google from 'next-auth/providers/google'
+import NextAuth from "next-auth";
 
-import { prisma } from '@/lib/prisma'
+import { authOptions } from "@/lib/auth/options";
 
-const handler = NextAuth({
-  adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: 'jwt',
-  },
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-})
+const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };
