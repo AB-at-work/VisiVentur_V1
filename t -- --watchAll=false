@@ -1,0 +1,37 @@
+[1mdiff --git a/src/app/layout.tsx b/src/app/layout.tsx[m
+[1mindex 87fb3fa..3987a13 100644[m
+[1m--- a/src/app/layout.tsx[m
+[1m+++ b/src/app/layout.tsx[m
+[36m@@ -2,6 +2,7 @@[m [mimport type { Metadata } from "next";[m
+ import { cookies } from "next/headers";[m
+ import { Inter, Playfair_Display } from "next/font/google";[m
+ import { getServerSession } from "next-auth";[m
+[32m+[m[32mimport type { Session } from "next-auth";[m
+ [m
+ import Navbar from "@/components/Navbar";[m
+ import { authOptions } from "@/lib/auth/options";[m
+[36m@@ -30,7 +31,23 @@[m [mexport default async function RootLayout({[m
+ }: Readonly<{[m
+   children: React.ReactNode;[m
+ }>) {[m
+[31m-  const session = await getServerSession(authOptions);[m
+[32m+[m[32m  let session: Session | null = null;[m
+[32m+[m
+[32m+[m[32m  try {[m
+[32m+[m[32m    session = await getServerSession(authOptions);[m
+[32m+[m[32m  } catch (error) {[m
+[32m+[m[32m    const isDynamicUsageError =[m
+[32m+[m[32m      typeof error === "object" &&[m
+[32m+[m[32m      error !== null &&[m
+[32m+[m[32m      "digest" in error &&[m
+[32m+[m[32m      (error as { digest?: unknown }).digest === "DYNAMIC_SERVER_USAGE";[m
+[32m+[m
+[32m+[m[32m    if (!isDynamicUsageError) {[m
+[32m+[m[32m      const reason = error instanceof Error ? error : new Error(String(error));[m
+[32m+[m[32m      console.error("Failed to retrieve session for navbar", reason);[m
+[32m+[m[32m    }[m
+[32m+[m[32m  }[m
+[32m+[m
+   const cookieStore = await cookies();[m
+   const storedCurrency = cookieStore.get("visiventur_preferred_currency")?.value;[m
+   const initialCurrency =[m
