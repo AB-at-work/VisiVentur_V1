@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Inter, Playfair_Display } from "next/font/google";
 import { getServerSession } from "next-auth";
+import type { Session } from "next-auth";
 
 import Navbar from "@/components/Navbar";
 import { authOptions } from "@/lib/auth/options";
@@ -30,7 +31,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
+  let session: Session | null = null;
+
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    const isDynamicUsageError =
+      typeof error === "object" &&
+      error !== null &&
+      "digest" in error &&
+      (error as { digest?: unknown }).digest === "DYNAMIC_SERVER_USAGE";
+
+    if (!isDynamicUsageError) {
+      const reason = error instanceof Error ? error : new Error(String(error));
+      console.error("Failed to retrieve session for navbar", reason);
+    }
+  }
+
   const cookieStore = await cookies();
   const storedCurrency = cookieStore.get("visiventur_preferred_currency")?.value;
   const initialCurrency =
