@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useCallback, useId, useMemo, useState } from "react";
 import type { Session } from "next-auth";
 
@@ -9,16 +8,12 @@ import type { CurrencyCode } from "@/types/currency";
 
 import AuthButtons from "./AuthButtons";
 import CurrencySelector from "./CurrencySelector";
+import HelpModal from "./HelpModal";
 import Logo from "./Logo";
 import MobileDrawer from "./MobileDrawer";
 import PrimaryLinks from "./PrimaryLinks";
 import ProfileMenu from "./ProfileMenu";
 import { NavbarProvider, type NavbarUser, type ThemeMode } from "./store";
-
-const HelpModal = dynamic(() => import("./HelpModal"), {
-  ssr: false,
-  loading: () => null,
-});
 
 export interface NavbarProps {
   session: Session | null;

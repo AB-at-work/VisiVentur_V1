@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Inter, Playfair_Display } from "next/font/google";
@@ -7,7 +9,6 @@ import type { Session } from "next-auth";
 import Navbar from "@/components/Navbar";
 import { authOptions } from "@/lib/auth/options";
 import type { CurrencyCode } from "@/types/currency";
-import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
